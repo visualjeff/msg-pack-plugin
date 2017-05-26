@@ -10,20 +10,18 @@
 
 * Plugin registration:
 
-	```js
-  server.register([{
-    register: require('msg-pack-plugin'),
-}], (err) => {
-    if (err) {
-        throw err;
-    }
-});
-  
-   ```
+    ```js
+        server.register([{
+            register: require('msg-pack-plugin'),
+        }], (err) => {
+            if (err) {
+                throw err;
+            }
+        });
+    ```
 
 * To validate you could use curl (this assumes you have msgpack2json installed):
 
-```bash
-    curl --header "accept: application/x-msgpack" 'http://localhost:3000/api/user' | msgpack2json -d
-
-```
+    ```bash
+        curl --header "accept: application/x-msgpack" 'http://localhost:3000/api/user' | msgpack2json -d
+    ```
