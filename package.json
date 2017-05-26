@@ -1,0 +1,35 @@
+{
+  "name": "msgpack-plugin",
+  "version": "0.0.1",
+  "description": "A Message Pack plugin for Hapi.",
+  "repository": "",
+  "bugs": {
+    "url": ""
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "lab -r console -t 100 -a code -L",
+    "test-cov-html": "lab -r html -o coverage.html -a code -L"
+  },
+  "keywords": [
+    "messagePack",
+    "msgPack",
+    "json",
+    "hapi",
+    "plugin"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "author": "visualjeff <visualjeff@icloud.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "code": "^4.0.0",
+    "lab": "^13.1.0"
+  },
+  "dependencies": {
+    "hapi": "^16.1.1",
+    "joi": "^10.5.0",
+    "msgpack-lite": "^0.1.26"
+  }
+}
