@@ -2,9 +2,9 @@
   "name": "msgpack-plugin",
   "version": "0.0.1",
   "description": "A Message Pack plugin for Hapi.",
-  "repository": "",
+  "repository": "https://github.com/visualjeff/msg-pack-plugin.git",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/visualjeff/msg-pack-plugin/issues"
   },
   "main": "lib/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "test-cov-html": "lab -r html -o coverage.html -a code -L"
   },
   "keywords": [
+    "msg-pack",
     "messagePack",
     "msgPack",
     "json",
