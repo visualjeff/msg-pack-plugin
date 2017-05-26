@@ -1,6 +1,6 @@
 {
   "name": "msgpack-plugin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Message Pack plugin for Hapi.",
   "repository": "https://github.com/visualjeff/msg-pack-plugin.git",
   "bugs": {
