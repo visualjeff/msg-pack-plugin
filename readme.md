@@ -4,7 +4,7 @@
 [![bitHound Dev Dependencies](https://www.bithound.io/github/visualjeff/msg-pack-plugin/badges/devDependencies.svg)](https://www.bithound.io/github/visualjeff/msg-pack-plugin/master/dependencies/npm)
 [![bitHound Code](https://www.bithound.io/github/visualjeff/msg-pack-plugin/badges/code.svg)](https://www.bithound.io/github/visualjeff/msg-pack-plugin)
 
-## msg-pack-plugin
+## msg-pack-plugin for Hapi
 
 * npm install msg-pack-plugin --save
 
