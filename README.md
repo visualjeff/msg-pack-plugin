@@ -1,19 +1,13 @@
 [![Build Status](https://travis-ci.org/visualjeff/msg-pack-plugin.png)](https://travis-ci.org/visualjeff/msg-pack-plugin)
 
-## msg-pack-plugin for Hapi
+## msg-pack-plugin for Hapi v18
 
 * npm install msg-pack-plugin --save
 
 * Plugin registration:
 
     ```js
-        server.register([{
-            register: require('msg-pack-plugin')
-        }], (err) => {
-            if (err) {
-                throw err;
-            }
-        });
+        server.register(require('msg-pack-plugin'));
     ```
 
 * To validate you could use curl (this assumes you have [msgpack2json](https://github.com/ludocode/msgpack-tools) installed):
