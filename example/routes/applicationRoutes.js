@@ -1,14 +1,16 @@
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 'use strict';
 
 const routes = {
-    register: (server, options, next) => {
+    name: 'applicationRoutes',
+    register: (server, options) => {
 
         server.route({
             method: 'GET',
             path: '/api/user',
-            handler: (request, reply) => {
+            handler: (request, h) => {
 
-                reply({
+                return {
                     statusCode: 200,
                     message: 'Getting All User Data',
                     data: [{
@@ -21,16 +23,10 @@ const routes = {
                         name: 'Jasmine',
                         age: 24
                     }]
-                });
+                }
             }
         });
-        next();
     }
-};
-
-routes.register.attributes = {
-    name: 'applicationRoutes',
-    version: '1.0.0'
 };
 
 module.exports = routes;

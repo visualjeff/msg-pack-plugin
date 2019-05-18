@@ -1,10 +1,11 @@
+/*eslint no-unused-vars: ["error", { "args": "none" }]*/
 'use strict';
 
 const MsgPackPlugin = require('../');
 
-const Hapi = require('hapi');
-const Code = require('code');
-const Lab = require('lab');
+const Hapi = require('@hapi/hapi');
+const Code = require('@hapi/code');
+const Lab = require('@hapi/lab');
 const lab = exports.lab = Lab.script();
 
 const describe = lab.experiment;
@@ -15,32 +16,45 @@ const msgpack = require('msgpack-lite');
 
 describe('msgpack-plugin', () => {
 
-    it('loads as a plugin', (done) => {
+    it('loads as a plugin', () => {
 
         const server = new Hapi.Server();
-        server.connection();
-        server.register([MsgPackPlugin], (err) => {
+        const register = async (server) => {
+
+            await server.register([{
+                plugin: MsgPackPlugin,
+                options: {}
+            }]);
+        };
+
+        register(server).catch((err) => {
 
             expect(err).to.not.exist();
-            done();
         });
     });
 
-    it('user request without proper accept header', (done) => {
+
+    it('user request without proper accept header', (/* done */) => {
 
         const server = new Hapi.Server();
-        server.connection();
-        server.register([MsgPackPlugin], (err) => {
+        const register = async (server) => {
+
+            await server.register([{
+                plugin: MsgPackPlugin
+            }]);
+        };
+
+        register(server).catch((err) => {
 
             expect(err).to.not.exist();
         });
 
-        server.route([{
+        server.route({
             method: 'GET',
             path: '/api/user',
-            handler: (request, reply) => {
+            handler: (request, h) => {
 
-                reply({
+                return {
                     statusCode: 200,
                     message: 'Getting All User Data',
                     data: [{
@@ -53,9 +67,9 @@ describe('msgpack-plugin', () => {
                         name: 'Jasmine',
                         age: 24
                     }]
-                });
+                };
             }
-        }]);
+        });
         const options = {
             method: 'GET',
             url: '/api/user',
@@ -77,28 +91,34 @@ describe('msgpack-plugin', () => {
                 name: 'Jasmine',
                 age: 24
             }]);
-            done();
+            //done();
         });
     });
-
-    it('user request with proper accept header', (done) => {
+    
+    it('user request with proper accept header', (/* done */) => {
 
         const server = new Hapi.Server();
-        server.connection();
-        server.register([MsgPackPlugin], (err) => {
+        const register = async () => {
+
+            await server.register([{
+                plugin: MsgPackPlugin
+            }]);
+        };
+
+        register().catch((err) => {
 
             expect(err).to.not.exist();
         });
 
-        server.route([{
+        server.route({
             method: 'GET',
             path: '/api/user',
-            handler: (request, reply) => {
+            handler: (request, h) => {
 
-                reply({statusCode: 200, message: 'Getting All User Data', data: [{ name: 'Kashish', age: 24 }, { name: 'Shubham', age: 21 }, { name: 'Jasmine', age: 24 }] });
+                return { statusCode: 200, message: 'Getting All User Data', data: [{ name: 'Kashish', age: 24 }, { name: 'Shubham', age: 21 }, { name: 'Jasmine', age: 24 }] };
 	    }
 	}
-	]);
+	);
 
         const options = {
             method: 'GET',
@@ -114,7 +134,7 @@ describe('msgpack-plugin', () => {
 	    expect(res.statusCode).to.equal(200);
 	    expect(res.headers['content-type']).to.equal('application/x-msgpack');
 	    expect(JSON.stringify(msgpack.decode(res.rawPayload))).to.equal('{"statusCode":200,"message":"Getting All User Data","data":[{"name":"Kashish","age":24},{"name":"Shubham","age":21},{"name":"Jasmine","age":24}]}');
-            done();
+            //done();
         });
     });
 });

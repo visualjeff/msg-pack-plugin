@@ -1,32 +1,27 @@
 'use strict';
 
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 
-const server = new Hapi.Server();
+const init = async () => {
 
-server.connection({
-    host: 'localhost',
-    port: 3000
-});
+    const server = Hapi.server({
+        port: 3000,
+        host: 'localhost'
+    });
 
-server.register([{
-    register: require('../'),
-}, {
-    register: require('./routes/applicationRoutes')
-}], (err) => {
+    await server.register([ { plugin: require('../'), server: server }, require('./routes/applicationRoutes') ]);
 
-    if (err) {
-        throw err;
-    }
-});
-
-server.start((err) => {
-
-    if (err) {
-        throw err;
-    }
-
+    await server.start();
+    
     console.dir('Server running at: ' + server.info.uri, {
         colors: true
     });
+};
+
+process.on('unhandledRejection', (err) => {
+
+    console.log(err);
+    process.exit(1);
 });
+
+init();
